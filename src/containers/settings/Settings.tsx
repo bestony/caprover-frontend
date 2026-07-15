@@ -72,8 +72,8 @@ class Settings extends Component<
                 <Row justify="center" gutter={20}>
                     <Col
                         style={{ marginBottom: 20 }}
-                        lg={{ span: 14 }}
-                        md={{ span: 23 }}
+                        lg={{ span: 18 }}
+                        xs={{ span: 23 }}
                     >
                         <Card
                             style={{ height: '100%' }}
