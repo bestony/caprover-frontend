@@ -100,7 +100,7 @@
     "apps.deploy_captain_definition_relative_path_hint": "مسیر تعریف captain",
     "apps.deploy_captain_definition_relative_path_hint_tooltip": "تنها در صورتی ویرایش کنید که فایل تعریف captain خود را در یک زیرشاخه پروژه خود قرار داده‌اید",
     "apps.deploy_cli_description_part1": "از دستور استقرار CLI استفاده کنید. این ساده‌ترین روش است زیرا تنها به یک دستور ساده مانند %s نیاز دارد. برای اطلاعات بیشتر در مورد آن در اسناد مطالعه کنید",
-    "apps.deploy_cli_description_part2": "اگر از CI/CD برای اجرای <code>caprover deploy</code> استفاده می‌کنید و نمی‌خواهید از رمز عبور خود استفاده کنید، می‌توانید از توکن‌های خاص برنامه استفاده کنید",
+    "apps.deploy_cli_description_part2": "اگر از CI/CD برای اجرای %s استفاده می‌کنید و نمی‌خواهید از رمز عبور خود استفاده کنید، می‌توانید از توکن‌های خاص برنامه استفاده کنید",
     "apps.deploy_copied_to_clipboard": "در کلیپ‌برد کپی شد!",
     "apps.deploy_current_version_tooltip": "نسخه فعلی",
     "apps.deploy_failed_deploy_tooltip": "استقرار ناموفق",

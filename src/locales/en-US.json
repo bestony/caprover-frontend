@@ -100,7 +100,7 @@
     "apps.deploy_captain_definition_relative_path_hint": "captain-definition path",
     "apps.deploy_captain_definition_relative_path_hint_tooltip": "Edit only if you have placed your captain-definition file in a subdirectory of your project",
     "apps.deploy_cli_description_part1": "Use CLI deploy command. This is the easiest method as it only requires a simple command like %s. Read more about it in the docs",
-    "apps.deploy_cli_description_part2": "If you're using CI/CD to run <code>caprover deploy</code> and you do not wish to use your password, you can use app-specific tokens",
+    "apps.deploy_cli_description_part2": "If you're using CI/CD to run %s and you do not wish to use your password, you can use app-specific tokens",
     "apps.deploy_copied_to_clipboard": "Copied to clipboard!",
     "apps.deploy_current_version_tooltip": "Current Version",
     "apps.deploy_failed_deploy_tooltip": "Failed deploy",

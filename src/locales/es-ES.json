@@ -100,7 +100,7 @@
     "apps.deploy_captain_definition_relative_path_hint": "ruta de definición del capitán",
     "apps.deploy_captain_definition_relative_path_hint_tooltip": "Edite solo si ha colocado su archivo de definición del capitán en un subdirectorio de su proyecto",
     "apps.deploy_cli_description_part1": "Use el comando de despliegue CLI. Este es el método más fácil ya que solo requiere un comando simple como %s. Lea más sobre esto en los documentos",
-    "apps.deploy_cli_description_part2": "Si está utilizando CI/CD para ejecutar <code>caprover deploy</code> y no desea usar su contraseña, puede usar tokens específicos de la app",
+    "apps.deploy_cli_description_part2": "Si está utilizando CI/CD para ejecutar %s y no desea usar su contraseña, puede usar tokens específicos de la app",
     "apps.deploy_copied_to_clipboard": "¡Copiado al portapapeles!",
     "apps.deploy_current_version_tooltip": "Versión Actual",
     "apps.deploy_failed_deploy_tooltip": "Despliegue fallido",

@@ -100,7 +100,7 @@
     "apps.deploy_captain_definition_relative_path_hint": "putanja captain-definition",
     "apps.deploy_captain_definition_relative_path_hint_tooltip": "Uredite samo ako ste postavili svoju captain-definition datoteku u poddirektorij vašeg projekta",
     "apps.deploy_cli_description_part1": "Koristite naredbu za deploy putem CLI-ja. Ovo je najjednostavnija metoda jer zahtijeva samo jednostavnu naredbu poput %s. Pročitajte više o tome u dokumentaciji",
-    "apps.deploy_cli_description_part2": "Ako koristite CI/CD za izvođenje <code>caprover deploy</code> i ne želite koristiti svoju lozinku, možete koristiti specifični token aplikacije",
+    "apps.deploy_cli_description_part2": "Ako koristite CI/CD za izvođenje %s i ne želite koristiti svoju lozinku, možete koristiti specifični token aplikacije",
     "apps.deploy_copied_to_clipboard": "Kopirano u međuspremnik!",
     "apps.deploy_current_version_tooltip": "Trenutna verzija",
     "apps.deploy_failed_deploy_tooltip": "Neuspjeli deploy",

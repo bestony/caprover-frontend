@@ -100,7 +100,7 @@
     "apps.deploy_captain_definition_relative_path_hint": "مسار تعريف captain",
     "apps.deploy_captain_definition_relative_path_hint_tooltip": "قم بالتعديل فقط إذا وضعت ملف تعريف captain الخاص بك في دليل فرعي من مشروعك",
     "apps.deploy_cli_description_part1": "استخدم أمر التوزيع CLI. هذه هي الطريقة الأسهل لأنها تتطلب أمرًا بسيطًا مثل %s. اقرأ المزيد عن ذلك في الوثائق",
-    "apps.deploy_cli_description_part2": "إذا كنت تستخدم CI/CD لتشغيل <code>caprover deploy</code> ولا ترغب في استخدام كلمة المرور الخاصة بك، يمكنك استخدام رموز محددة للتطبيق",
+    "apps.deploy_cli_description_part2": "إذا كنت تستخدم CI/CD لتشغيل %s ولا ترغب في استخدام كلمة المرور الخاصة بك، يمكنك استخدام رموز محددة للتطبيق",
     "apps.deploy_copied_to_clipboard": "تم النسخ إلى الحافظة!",
     "apps.deploy_current_version_tooltip": "الإصدار الحالي",
     "apps.deploy_failed_deploy_tooltip": "فشل التوزيع",

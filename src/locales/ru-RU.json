@@ -100,7 +100,7 @@
     "apps.deploy_captain_definition_relative_path_hint": "Путь к captain-definition",
     "apps.deploy_captain_definition_relative_path_hint_tooltip": "Редактируйте, только если файл находится в подкаталоге",
     "apps.deploy_cli_description_part1": "Используйте команду CLI для развертывания. Это самый простой способ. Подробнее в документации: %s",
-    "apps.deploy_cli_description_part2": "Если вы используете CI/CD для запуска <code>caprover deploy</code> и не хотите вводить пароль, используйте токены приложений.",
+    "apps.deploy_cli_description_part2": "Если вы используете CI/CD для запуска %s и не хотите вводить пароль, используйте токены приложений.",
     "apps.deploy_copied_to_clipboard": "Скопировано в буфер!",
     "apps.deploy_current_version_tooltip": "Текущая версия",
     "apps.deploy_failed_deploy_tooltip": "Ошибка развертывания",
