@@ -6,8 +6,10 @@ import ApiComponent from '../../../global/ApiComponent'
 import CenteredSpinner from '../../../global/CenteredSpinner'
 import {
     DEPLOYMENT_QUERY_PARAM_APP_NAME,
+    DEPLOYMENT_QUERY_PARAM_PROJECT_ID,
     DEPLOYMENT_QUERY_PARAM_TEMPLATE,
     DEPLOYMENT_QUERY_PARAM_VALUES_ARRAY,
+    ONE_CLICK_PROJECT_ID_VAR_NAME,
 } from './OneClickAppConfigPage'
 import OneClickAppDeployProgress from './OneClickAppDeployProgress'
 
@@ -18,6 +20,7 @@ export default class OneClickDeploymentPage extends ApiComponent<
         appName: string
         template?: IOneClickTemplate
         valuesArray?: Array<{ key: string; value: string }>
+        projectId?: string
     }
 > {
     private isUnmount: boolean = false
@@ -29,6 +32,7 @@ export default class OneClickDeploymentPage extends ApiComponent<
             appName: '',
             template: undefined,
             valuesArray: undefined,
+            projectId: undefined,
         }
     }
 
@@ -45,6 +49,7 @@ export default class OneClickDeploymentPage extends ApiComponent<
         const templateStr = qs.get(DEPLOYMENT_QUERY_PARAM_TEMPLATE)
         const valuesArrayStr = qs.get(DEPLOYMENT_QUERY_PARAM_VALUES_ARRAY)
         const appName = qs.get(DEPLOYMENT_QUERY_PARAM_APP_NAME) || ''
+        const projectIdFromQuery = qs.get(DEPLOYMENT_QUERY_PARAM_PROJECT_ID) || ''
 
         if (!templateStr || !valuesArrayStr || !appName) {
             Toaster.createCatcher()(
@@ -61,10 +66,28 @@ export default class OneClickDeploymentPage extends ApiComponent<
                 value: string
             }>
 
+            // Prefer explicit query param; fall back to reserved values key
+            const projectIdFromValues =
+                valuesArray.find((v) => v.key === ONE_CLICK_PROJECT_ID_VAR_NAME)
+                    ?.value || ''
+            const projectId = projectIdFromQuery || projectIdFromValues || ''
+
+            // Ensure project id is present in values for backends that only read values
+            if (
+                projectId &&
+                !valuesArray.some((v) => v.key === ONE_CLICK_PROJECT_ID_VAR_NAME)
+            ) {
+                valuesArray.push({
+                    key: ONE_CLICK_PROJECT_ID_VAR_NAME,
+                    value: projectId,
+                })
+            }
+
             self.setState({
                 appName,
                 template,
                 valuesArray,
+                projectId,
             })
 
             // Start deployment immediately
