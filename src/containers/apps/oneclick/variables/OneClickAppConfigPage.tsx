@@ -2,8 +2,11 @@ import { Card, Col, Row } from 'antd'
 import ReactMarkdown from 'react-markdown'
 import { RouteComponentProps } from 'react-router'
 import gfm from 'remark-gfm'
+import ProjectSelector from '../../../../components/ProjectSelector'
 import { IOneClickTemplate } from '../../../../models/IOneClickAppModels'
+import ProjectDefinition from '../../../../models/ProjectDefinition'
 import ErrorFactory from '../../../../utils/ErrorFactory'
+import { localize } from '../../../../utils/Language'
 import Toaster from '../../../../utils/Toaster'
 import Utils from '../../../../utils/Utils'
 import ApiComponent from '../../../global/ApiComponent'
@@ -16,17 +19,21 @@ import OneClickVariablesSection from './OneClickVariablesSection'
 
 export const ONE_CLICK_APP_NAME_VAR_NAME = '$$cap_appname'
 export const ONE_CLICK_ROOT_DOMAIN_VAR_NAME = '$$cap_root_domain'
+export const ONE_CLICK_PROJECT_ID_VAR_NAME = '$$cap_project_id'
 
 // Query parameter constants for deployment page
 export const DEPLOYMENT_QUERY_PARAM_TEMPLATE = 'template'
 export const DEPLOYMENT_QUERY_PARAM_VALUES_ARRAY = 'valuesArray'
 export const DEPLOYMENT_QUERY_PARAM_APP_NAME = 'appName'
+export const DEPLOYMENT_QUERY_PARAM_PROJECT_ID = 'projectId'
 
 export default class OneClickAppConfigPage extends ApiComponent<
     RouteComponentProps<any>,
     {
         apiData: IOneClickTemplate | undefined
         rootDomain: string
+        projects: ProjectDefinition[]
+        selectedProjectId: string
     }
 > {
     private isUnmount: boolean = false
@@ -36,6 +43,8 @@ export default class OneClickAppConfigPage extends ApiComponent<
         this.state = {
             apiData: undefined,
             rootDomain: '',
+            projects: [],
+            selectedProjectId: '',
         }
     }
 
@@ -100,15 +109,51 @@ export default class OneClickAppConfigPage extends ApiComponent<
 
                 apiData = data
 
-                return self.apiManager.getCaptainInfo()
+                return Promise.all([
+                    self.apiManager.getCaptainInfo(),
+                    self.apiManager.getAllProjects(),
+                ])
             })
-            .then(function (captainInfo) {
+            .then(function ([captainInfo, projectsResponse]) {
                 self.setState({
                     apiData: apiData,
                     rootDomain: captainInfo.rootDomain,
+                    projects: projectsResponse.projects || [],
                 })
             })
             .catch(Toaster.createCatcher())
+    }
+
+    renderProjectSelector() {
+        const self = this
+
+        if ((self.state.projects || []).length === 0) {
+            return undefined
+        }
+
+        return (
+            <div style={{ marginBottom: 40 }}>
+                <h4>{localize('apps.parent_project', 'Parent project')}</h4>
+                <div
+                    style={{ paddingBottom: 5, fontSize: '90%' }}
+                    className="hide-on-demand"
+                />
+                <Row>
+                    <Col xs={{ span: 24 }} lg={{ span: 12 }}>
+                        <ProjectSelector
+                            allProjects={self.state.projects}
+                            selectedProjectId={self.state.selectedProjectId}
+                            onChange={(value: string) => {
+                                self.setState({
+                                    selectedProjectId: value,
+                                })
+                            }}
+                            excludeProjectId={'NONE'}
+                        />
+                    </Col>
+                </Row>
+            </div>
+        )
     }
 
     render() {
@@ -145,6 +190,7 @@ export default class OneClickAppConfigPage extends ApiComponent<
                                 </ReactMarkdown>
                             </div>
                             <div style={{ height: 40 }} />
+                            {self.renderProjectSelector()}
                             <OneClickVariablesSection
                                 oneClickAppVariables={
                                     apiData.caproverOneClickApp.variables
@@ -166,6 +212,12 @@ export default class OneClickAppConfigPage extends ApiComponent<
                                         ONE_CLICK_ROOT_DOMAIN_VAR_NAME
                                     ] = self.state.rootDomain
 
+                                    // Carry selected project through values so deploy works
+                                    // even when the API client does not yet have a projectId field.
+                                    valuesAugmented[
+                                        ONE_CLICK_PROJECT_ID_VAR_NAME
+                                    ] = self.state.selectedProjectId || ''
+
                                     const valuesArray = Object.keys(
                                         valuesAugmented
                                     ).map((key) => {
@@ -185,8 +237,11 @@ export default class OneClickAppConfigPage extends ApiComponent<
                                     const appName = encodeURIComponent(
                                         self.props.match.params.appName
                                     )
+                                    const projectId = encodeURIComponent(
+                                        self.state.selectedProjectId || ''
+                                    )
 
-                                    const deployUrl = `/apps/oneclick/deployment?${DEPLOYMENT_QUERY_PARAM_TEMPLATE}=${templateStr}&${DEPLOYMENT_QUERY_PARAM_VALUES_ARRAY}=${valuesArrayStr}&${DEPLOYMENT_QUERY_PARAM_APP_NAME}=${appName}`
+                                    const deployUrl = `/apps/oneclick/deployment?${DEPLOYMENT_QUERY_PARAM_TEMPLATE}=${templateStr}&${DEPLOYMENT_QUERY_PARAM_VALUES_ARRAY}=${valuesArrayStr}&${DEPLOYMENT_QUERY_PARAM_APP_NAME}=${appName}&${DEPLOYMENT_QUERY_PARAM_PROJECT_ID}=${projectId}`
                                     self.props.history.push(deployUrl)
                                 }}
                             />
