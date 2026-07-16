@@ -2,7 +2,7 @@ import { PlusCircleOutlined, QuestionCircleFilled } from '@ant-design/icons'
 import { Button, Card, Checkbox, Col, Input, Row, Tooltip } from 'antd'
 import { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import ProjectSelector from '../../components/ProjectSelector'
+import ParentProjectSelector from '../../components/ParentProjectSelector'
 import { IMobileComponent } from '../../models/ContainerProps'
 import ProjectDefinition from '../../models/ProjectDefinition'
 import { localize } from '../../utils/Language'
@@ -20,7 +20,7 @@ interface MyProps {
     projects: ProjectDefinition[]
 }
 
-class CreateNewApp extends Component<
+export class CreateNewApp extends Component<
     MyProps & IMobileComponent,
     { appName: string; selectedProjectId: string; hasPersistency: boolean }
 > {
@@ -212,31 +212,16 @@ class CreateNewApp extends Component<
     createProjectInApp() {
         const self = this
 
-        if ((self.props.projects || []).length === 0) {
-            return undefined
-        }
-
         return (
-            <div>
-                {' '}
-                <div
-                    style={{
-                        marginBottom: 5,
-                    }}
-                >
-                    {localize('apps.parent_project', 'Parent project')}
-                </div>
-                <ProjectSelector
-                    allProjects={self.props.projects}
-                    selectedProjectId={self.state.selectedProjectId}
-                    onChange={(value: string) => {
-                        self.setState({
-                            selectedProjectId: value,
-                        })
-                    }}
-                    excludeProjectId={'NONE'}
-                />
-            </div>
+            <ParentProjectSelector
+                projects={self.props.projects}
+                selectedProjectId={self.state.selectedProjectId}
+                onChange={(value: string) => {
+                    self.setState({
+                        selectedProjectId: value,
+                    })
+                }}
+            />
         )
     }
 }

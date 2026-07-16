@@ -46,7 +46,7 @@ class ProjectSelector extends React.Component<ProjectSelectorProps> {
                     return true
                 }
                 // eslint-disable-next-line no-loop-func
-                current = projectsMap[current].parentProjectId
+                current = projectsMap[current]?.parentProjectId
             }
             return false
         }
@@ -85,7 +85,7 @@ class ProjectSelector extends React.Component<ProjectSelectorProps> {
         ]
 
         const handleChange = (value: string) => {
-            onChange(value ?? '')
+            onChange(`${value || ''}`.trim())
         }
 
         return (
@@ -98,7 +98,7 @@ class ProjectSelector extends React.Component<ProjectSelectorProps> {
                     'Select a parent project'
                 )}
                 dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                value={selectedProjectId || ''}
+                value={`${selectedProjectId || ''}`.trim()}
                 onChange={handleChange}
                 treeData={root}
             />
