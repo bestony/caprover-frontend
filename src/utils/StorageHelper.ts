@@ -1,3 +1,5 @@
+import Logger from './Logger'
+
 const fallbackNoOps = {
     getItem(t: string) {
         return ''
@@ -14,6 +16,7 @@ const SIDER_COLLAPSED_STATE = 'CAPROVER_SIDER_COLLAPSED_STATE'
 const DARK_MODE = 'CAPROVER_DARK_MODE'
 const LANGUAGE = 'CAPROVER_LANGUAGE'
 const APP_PROJECT_SPLIT_RATIO = 'APP_PROJECT_SPLIT_RATIO'
+export const REMEMBER_ME_OPTION = 'CAPROVER_REMEMBER_ME_OPTION'
 
 class StorageHelper {
     getAuthKeyFromStorage() {
@@ -36,6 +39,38 @@ class StorageHelper {
     setAuthKeyInLocalStorage(authKey: string) {
         localStorage.setItem(AUTH_KEY, authKey)
         sessionStorage.setItem(AUTH_KEY, '')
+    }
+
+    setRememberMeOptionInLocalStorage(option: number): void {
+        if (!Number.isInteger(option)) return
+
+        try {
+            localStorage.setItem(REMEMBER_ME_OPTION, JSON.stringify(option))
+        } catch (error) {
+            Logger.dev('Unable to persist Remember Me option')
+        }
+    }
+
+    getRememberMeOptionFromLocalStorage(): number | undefined {
+        let storageValue = ''
+        try {
+            storageValue = localStorage.getItem(REMEMBER_ME_OPTION) || ''
+        } catch (error) {
+            Logger.dev('Unable to read Remember Me option')
+            return undefined
+        }
+        if (!storageValue) return undefined
+
+        try {
+            const parsedValue: unknown = JSON.parse(storageValue)
+            return typeof parsedValue === 'number' &&
+                Number.isInteger(parsedValue)
+                ? parsedValue
+                : undefined
+        } catch (error) {
+            Logger.dev('Unable to parse Remember Me option')
+            return undefined
+        }
     }
 
     setSiderCollapsedStateInLocalStorage(siderCollapsed: boolean) {
