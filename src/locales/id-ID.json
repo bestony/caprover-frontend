@@ -100,7 +100,7 @@
     "apps.deploy_captain_definition_relative_path_hint": "jalur definisi kapten",
     "apps.deploy_captain_definition_relative_path_hint_tooltip": "Edit hanya jika Anda telah menempatkan file definisi kapten Anda di subdirektori proyek Anda",
     "apps.deploy_cli_description_part1": "Gunakan perintah penempatan CLI. Ini adalah metode termudah karena hanya memerlukan perintah sederhana seperti %s. Baca lebih lanjut tentang itu dalam dokumen",
-    "apps.deploy_cli_description_part2": "Jika Anda menggunakan CI/CD untuk menjalankan <code>caprover deploy</code> dan Anda tidak ingin menggunakan kata sandi Anda, Anda dapat menggunakan token khusus aplikasi",
+    "apps.deploy_cli_description_part2": "Jika Anda menggunakan CI/CD untuk menjalankan %s dan Anda tidak ingin menggunakan kata sandi Anda, Anda dapat menggunakan token khusus aplikasi",
     "apps.deploy_copied_to_clipboard": "Disalin ke papan klip!",
     "apps.deploy_current_version_tooltip": "Versi Saat Ini",
     "apps.deploy_failed_deploy_tooltip": "Penempatan gagal",

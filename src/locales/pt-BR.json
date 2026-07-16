@@ -100,7 +100,7 @@
     "apps.deploy_captain_definition_relative_path_hint": "caminho captain-definition",
     "apps.deploy_captain_definition_relative_path_hint_tooltip": "Edite somente se você colocou seu arquivo captain-definition em um subdiretório do seu projeto",
     "apps.deploy_cli_description_part1": "Use o comando de deploy do CLI. Este é o método mais fácil, pois requer apenas um comando simples como %s. Leia mais sobre ele na documentação",
-    "apps.deploy_cli_description_part2": "Se você estiver usando CI/CD para rodar <code>caprover deploy</code> e não quiser usar sua senha, você pode usar tokens específicos de app",
+    "apps.deploy_cli_description_part2": "Se você estiver usando CI/CD para rodar %s e não quiser usar sua senha, você pode usar tokens específicos de app",
     "apps.deploy_copied_to_clipboard": "Copiado para a área de transferência!",
     "apps.deploy_current_version_tooltip": "Versão Atual",
     "apps.deploy_failed_deploy_tooltip": "Deploy falhou",
