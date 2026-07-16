@@ -176,6 +176,7 @@ export default class OneClickAppConfigPage extends ApiComponent<
                                 onChange={(selectedProjectId) => {
                                     self.setState({ selectedProjectId })
                                 }}
+                                hideWhenEmpty={false}
                                 style={{ marginBottom: 24 }}
                             />
                             <OneClickVariablesSection

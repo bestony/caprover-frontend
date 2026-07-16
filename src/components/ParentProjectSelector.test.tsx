@@ -35,6 +35,19 @@ describe('ParentProjectSelector', () => {
         expect(container).toBeEmptyDOMElement()
     })
 
+    it('shows the root selector when explicitly requested without projects', () => {
+        render(
+            <ParentProjectSelector
+                projects={[]}
+                selectedProjectId=""
+                onChange={jest.fn()}
+                hideWhenEmpty={false}
+            />
+        )
+
+        expect(screen.getByTestId('selected-project')).toHaveTextContent('')
+    })
+
     it('normalizes selection and exposes root through clear', () => {
         const onChange = jest.fn()
         render(

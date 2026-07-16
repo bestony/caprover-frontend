@@ -42,4 +42,10 @@ describe('CreateNewApp project assignment', () => {
             false
         )
     })
+
+    it('keeps the apps home selector hidden when no projects exist', () => {
+        const component = new CreateNewApp(createProps() as any)
+
+        expect(component.createProjectInApp()).toBeUndefined()
+    })
 })

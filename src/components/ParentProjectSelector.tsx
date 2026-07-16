@@ -9,13 +9,14 @@ interface ParentProjectSelectorProps {
     onChange: (projectId: string) => void
     excludeProjectId?: string
     style?: CSSProperties
+    hideWhenEmpty?: boolean
 }
 
 export default function ParentProjectSelector(
     props: ParentProjectSelectorProps
 ) {
     const projects = props.projects || []
-    if (projects.length === 0) {
+    if (projects.length === 0 && props.hideWhenEmpty !== false) {
         return <></>
     }
 

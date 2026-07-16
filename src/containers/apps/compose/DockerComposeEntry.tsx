@@ -148,6 +148,7 @@ volumes:
                                 onChange={(selectedProjectId) => {
                                     self.setState({ selectedProjectId })
                                 }}
+                                hideWhenEmpty={false}
                                 style={{ marginTop: 24 }}
                             />
                             {isMultiService && (
