@@ -88,6 +88,10 @@ interface IAppDefinitionBase {
 
     versions: IAppVersion[]
     appDeployTokenConfig?: AppDeployTokenConfig
+
+    // True for apps created before v1.15.0
+    // non-existent for apps created on or after v1.15.0
+    isLegacyAppName?: boolean
 }
 
 interface AppDeployTokenConfig {

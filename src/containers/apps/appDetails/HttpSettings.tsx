@@ -680,8 +680,15 @@ export default class HttpSettings extends Component<
                         str,
                         ['%s1', '%s2'],
                         [
-                            <code>srv-captain--{app.appName}</code>,
-                            <code>{`http://srv-captain--${app.appName}`}</code>,
+                            <code>
+                                {app.isLegacyAppName ? 'srv-captain--' : ''}
+                                {app.appName}
+                            </code>,
+                            <code>
+                                {app.isLegacyAppName
+                                    ? `http://srv-captain--${app.appName}`
+                                    : `http://${app.appName}`}
+                            </code>,
                         ]
                     )}
                 </p>
@@ -710,7 +717,13 @@ export default class HttpSettings extends Component<
                             "Use this if you don't want your app be externally available. Your app will continue to be available internally as %s"
                         ),
                         ['%s'],
-                        [<span>{`http://srv-captain--${app.appName}`}</span>]
+                        [
+                            <span>
+                                {app.isLegacyAppName
+                                    ? `http://srv-captain--${app.appName}`
+                                    : `http://${app.appName}`}
+                            </span>,
+                        ]
                     )}
                 >
                     <InfoCircleOutlined />
